@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+r = Role.create(name: "Employer")
+    Role.create(name: "Job Seeker")
+    Type.create([{name: "Executive"}, {name: "Networking"}, {name: "Programming"}, {name: "Design"}])
+    User.create(name: "Tartan",email: "tartan@cmu.edu", password: "foobar", admin: true, role_id: r.id)
+
+# admin kkhuzaei@qatar.cmu.edu password:password
