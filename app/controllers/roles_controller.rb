@@ -1,6 +1,6 @@
 class RolesController < ApplicationController
-  # before_action :set_role, only: [:show, :edit, :update, :destroy]
-  before_action :admin_only
+  before_action :set_role, only: [:show, :edit, :update, :destroy]
+  before_action :admin_only, only: [:index, :make_admin]
   
 
   # GET /roles
@@ -79,3 +79,4 @@ class RolesController < ApplicationController
       params.require(:role).permit(:name)
     end
 end
+
