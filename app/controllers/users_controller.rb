@@ -1,13 +1,14 @@
 class UsersController < ApplicationController
-  # before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy,:make_admin]
   skip_before_action :authenticate, only: [:new, :create]
-  # before_action :admin_only, only: [:index, :make_admin]
+  #before_action :admin_only, only: [:index, :make_admin]
   # before_action :authenticate_user
-  # before_filter :admin_only, :except => show
+
 
   # GET /users
   # GET /users.json
   def index
+    puts "INSIDE INDEX"
     @users = User.all
   end
 
@@ -78,12 +79,15 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      @user = User.find(params[:id])
-    end
+    # def set_user
+    #   @user = User.find(params[:id])
+    # end
+   
     
     def set_user
+      puts "INSIDE SET USER"
       @user = User.find(params[:id])
+      puts @user
       if @user == current_user || current_user.admin?
         return @user
       else
@@ -91,8 +95,11 @@ class UsersController < ApplicationController
       end
     end
 
+
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:email, :password, :name, :role_id)
     end
 end
+
