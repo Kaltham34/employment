@@ -1,7 +1,7 @@
 class JobsController < ApplicationController
-  # before_action :set_job, only: [:show, :edit, :update, :destroy]
+  before_action :set_job, only: [:show, :edit, :update, :destroy]
   skip_before_action :authenticate, only: [:index, :open]
-  # before_filter :admin_only, :except => show
+  
 
   # GET /jobs
   # GET /jobs.json
