@@ -1,19 +1,25 @@
 Rails.application.routes.draw do
+  get 'sessions/new'
+
   resources :types
   resources :jobs
   resources :roles
   resources :users
-  # root to: 'visitors#index'
-  # resources :users do
-  #     get :make_admin, on: :member
-  # end
+  root to: 'visitors#index'
+  
+  get 'open' => 'job#open'
+  get 'signup'=> 'users#new'
+  post 'signup' => 'users#new'
+  get 'users' => 'users#show'
+  get 'login' => 'sessions#new'
+  post 'login' => 'sessions#create'
 
-  root 'sessions#new'
-  post 'sessions/new' => 'sessions#new', as: :login
-  get 'signup'=> 'users#new', as: :signup
-  get 'sessions/new' => 'sessions#new', as: :Login
-  # get 'sessions/destroy' => 'sessions#destroy', as: :Logout
+  # get 'login' => 'sessions#new'
+  # post 'login' => 'sessions#create'
+  #get 'sessions/new' => 'sessions#new', as: :login
   post 'sessions/new' => 'sessions#create'
-  delete 'sessions/index'=> 'sessions#destroy', as: :Logout
-  get '/filled' => 'jobs#open'
+  delete 'logout'=> 'sessions#destroy'
+  resources :users do
+    get :make_admin, on: :member
+  end
 end
